@@ -1,5 +1,6 @@
 
 import networkx as nx
+from networkx import*
 from scipy.spatial import distance
 from itertools import product
 
@@ -34,3 +35,11 @@ class VietorisRipsComplex(SimplicialComplex):
                 if dist < epsilon:
                     g.add_edge(pair[0][1], pair[1][1])
         return g
+
+    def network_features(self):
+        graph = construct_network()
+        clustering_coef = nx.average_clustering(graph)
+        dominating_set = nx.min_edge_dominating_set(graph)
+        independent_set = nx.maximal_independent_set(graph)
+        ramsey_numbers = nx.ramsey_R2(graph)
+        vertex_cover =  nx.min_weighted_vertex_cover(graph)
