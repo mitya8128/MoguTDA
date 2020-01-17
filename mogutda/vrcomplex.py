@@ -36,8 +36,9 @@ class VietorisRipsComplex(SimplicialComplex):
                     g.add_edge(pair[0][1], pair[1][1])
         return g
 
+    @property
     def network_features(self):
-        graph = construct_network()
+        graph = self.construct_network()
         clustering_coef = nx.average_clustering(graph)
         return clustering_coef
 
