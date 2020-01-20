@@ -36,13 +36,13 @@ class VietorisRipsComplex(SimplicialComplex):
                     g.add_edge(pair[0][1], pair[1][1])
         return g
 
-    @property
+    @classmethod
     def clustering(self):
         graph = self.construct_network()
         clustering_coef = nx.average_clustering(graph)
         return clustering_coef
 
-    @property
+    @classmethod
     def edge_cover(self):
         graph = self.construct_network()
         cover = nx.min_edge_cover(graph)
