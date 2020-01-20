@@ -37,13 +37,20 @@ class VietorisRipsComplex(SimplicialComplex):
         return g
 
     @property
-    def network_features(self):
+    def clustering(self):
         graph = self.construct_network()
         clustering_coef = nx.average_clustering(graph)
         return clustering_coef
+
+    @property
+    def edge_cover(self):
+        graph = self.construct_network()
+        cover = nx.min_edge_cover(graph)
+        return cover
 
 
 #TODO:  #dominating_set = nx.min_edge_dominating_set(graph)
 #        #independent_set = nx.maximal_independent_set(graph)
 #        #ramsey_numbers = nx.ramsey_R2(graph)
 #        #vertex_cover =  nx.min_weighted_vertex_cover(graph)
+#        #hardcode functions parameters (temporary)
