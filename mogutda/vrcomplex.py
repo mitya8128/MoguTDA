@@ -67,6 +67,7 @@ class VietorisRipsComplex(SimplicialComplex):
         dominating_set = nx.algorithms.approximation.min_edge_dominating_set(graph)
         return dominating_set
 
+
     def vertex_cover(self):
         graph = self.construct_network()
         cover_vertex = nx.algorithms.approximation.min_weighted_vertex_cover(graph)    # weight = None
