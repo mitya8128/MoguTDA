@@ -1,6 +1,7 @@
 
 import networkx as nx
-from networkx import*
+from nx import*
+import networkx.algorithms.approximation as apxa
 from scipy.spatial import distance
 from itertools import product
 
@@ -36,21 +37,37 @@ class VietorisRipsComplex(SimplicialComplex):
                     g.add_edge(pair[0][1], pair[1][1])
         return g
 
-    @classmethod
+
     def clustering(self):
         graph = self.construct_network()
         clustering_coef = nx.average_clustering(graph)
         return clustering_coef
 
-    @classmethod
+
     def edge_cover(self):
         graph = self.construct_network()
-        cover = nx.min_edge_cover(graph)
-        return cover
+        cover_edge = nx.min_edge_cover(graph)
+        return cover_edge
 
 
-#TODO:  #dominating_set = nx.min_edge_dominating_set(graph)
-#        #independent_set = nx.maximal_independent_set(graph)
-#        #ramsey_numbers = nx.ramsey_R2(graph)
-#        #vertex_cover =  nx.min_weighted_vertex_cover(graph)
-#        #hardcode functions parameters (temporary)
+    def ramsey(self):
+        graph = self.construct_network()
+        numbers = nx.algorithms.approximation.ramsey_R2(graph)
+        return numbers
+
+
+    def independent(self):
+        graph = self.construct_network()
+        independent_set = nx.maximal_independent_set(graph)
+        return independent_set
+
+
+    def dominating(self):
+        graph = self.construct_network()
+        dominating_set = nx.algorithms.approximation.min_edge_dominating_set(graph)
+        return dominating_set
+
+    def vertex_cover(self):
+        graph = self.construct_network()
+        cover_vertex = nx.algorithms.approximation.min_weighted_vertex_cover(graph)    # weight = None
+        return cover_vertex
